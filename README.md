@@ -21,9 +21,9 @@ Proyecto: BDD de una central de policia
   }
   - Policia (Es una persona)
   {
-   - N° de identificación del oficial
-   - Placa del oficial
-   - Estación policial al que pertenece
+    - N° de identificación del oficial
+    - Placa del oficial
+    - Estación policial al que pertenece
   }
   - Estación Policial
   {
