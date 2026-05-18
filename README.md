@@ -42,11 +42,11 @@ Proyecto: BDD de una central de policia
 Se quiere registrar el cargo a una _persona_ :
   - Se requieren los datos de la persona
   - Lista de los cargos que ha cometido, lo que esos cargos deberán de contener son:
-        - Tipo
-        - Código del policia
-        - Acusador, lo que el acusador deberá de contener es:
-            - Nombre
-            - Dui
+    - Tipo
+    - Código del policia
+    - Acusador, lo que el acusador deberá de contener es:
+      - Nombre
+      - Dui
             
 *End points _opcionales_(pero son MUY requeridos)*
 - Registrar una persona
