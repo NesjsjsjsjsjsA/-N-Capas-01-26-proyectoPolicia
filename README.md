@@ -4,20 +4,20 @@ Creado para el laboratorio de N-capas
 Proyecto: BDD de una central de policia
 
 *Entidades claves*:
-  - Persona 
+  - Persona
   {
-   - Nombre
-   - DUI
-   - Dirección (Departamento/Calle/Colonia/Municipio)
-   - Teléfono
+    - Nombre
+    - DUI
+    - Dirección (Departamento/Calle/Colonia/Municipio)
+    - Teléfono
   }
   - Cargos
   {
-   - Fecha
-   - Acusador
-   - Acusado
-   - Tipo de cargos (Procesal ó Penal)
-   - Descripción del cargo
+    - Fecha
+    - Acusador
+    - Acusado
+    - Tipo de cargos (Procesal ó Penal)
+    - Descripción del cargo
   }
   - Policia (Es una persona)
   {
