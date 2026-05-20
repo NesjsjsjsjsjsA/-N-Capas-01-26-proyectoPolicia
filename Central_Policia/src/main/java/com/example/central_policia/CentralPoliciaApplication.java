@@ -9,5 +9,4 @@ public class CentralPoliciaApplication {
     public static void main(String[] args) {
         SpringApplication.run(CentralPoliciaApplication.class, args);
     }
-
 }
