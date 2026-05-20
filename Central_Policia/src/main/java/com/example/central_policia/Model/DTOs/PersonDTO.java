@@ -1,18 +1,25 @@
 package com.example.central_policia.Model.DTOs;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Email;
+import com.example.central_policia.Model.Direcciones.Departamento;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.UUID;
 
 @Data
 public class PersonDTO {
 
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "name must be alphanumeric")
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "El nombre debe de contener letras!")
     private String name;
 
-    @Email
-    private String email;
+    @Pattern(regexp = "^[0-9]{8}-[0-9]$")
+    private String DUI;
+
+    private Long depID;
+    private Long MunID;
+
+    //Es necesario que sea solo numérico
+    @Pattern(regexp = "^[0-9]{4}-[0-9]${4}")
+    private String tel;
 
 }

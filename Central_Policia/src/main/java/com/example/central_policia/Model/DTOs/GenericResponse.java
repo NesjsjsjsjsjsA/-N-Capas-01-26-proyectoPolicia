@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GenericResponse {
-
     private String message;
     private Object data;
 
@@ -19,6 +18,7 @@ public class GenericResponse {
     @JsonIgnore
     private HttpStatus status = HttpStatus.OK;
 
-    public ResponseEntity<GenericResponse> buildResponse(){ return ResponseEntity.status(status).body(this);}
-
+    public ResponseEntity<GenericResponse> buildResponse(){
+        return ResponseEntity.status(status).body(this);
+    }
 }
