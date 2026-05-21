@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface iPersonRepository extends JpaRepository<Person, UUID> {
 
-    @Query("select u from Person u where u.name = :name or u.DUI= :dui")
-    Person findPersonByDUI(Integer DUI, String name);
+    @Query("select u from Person u where u.DUI= :dui")
+    Person findPersonByDUI(Integer DUI);
 }

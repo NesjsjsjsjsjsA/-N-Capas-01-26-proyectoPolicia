@@ -2,16 +2,15 @@ package com.example.central_policia.Model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "police_data")
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -25,7 +24,7 @@ public class Police extends Person{
 
     //Con dudas de esta implementacion
     @ManyToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 
     //Aun no agregada esta funcion
