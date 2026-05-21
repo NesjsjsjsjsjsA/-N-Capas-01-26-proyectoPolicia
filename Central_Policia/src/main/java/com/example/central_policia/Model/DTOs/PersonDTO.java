@@ -16,6 +16,7 @@ public class PersonDTO {
     private String DUI;
 
     private Long depID;
+
     private Long MunID;
 
     //Es necesario que sea solo numérico
