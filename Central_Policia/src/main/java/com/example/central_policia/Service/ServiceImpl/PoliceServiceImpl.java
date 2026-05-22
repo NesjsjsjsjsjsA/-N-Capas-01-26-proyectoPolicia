@@ -1,11 +1,13 @@
 package com.example.central_policia.Service.ServiceImpl;
 
 import com.example.central_policia.ExceptionHandler.FindPerson;
-import com.example.central_policia.Model.DTOs.PersonDTO;
 import com.example.central_policia.Model.DTOs.PoliceDTO;
-import com.example.central_policia.Model.Person;
+import com.example.central_policia.Model.DTOs.RegisterPoliceRequestDTO;
+import com.example.central_policia.Model.EstacionPolicial;
 import com.example.central_policia.Model.Police;
-import com.example.central_policia.Repository.iPersonRepository;
+import com.example.central_policia.Repository.iDepartmentRepository;
+import com.example.central_policia.Repository.iEstacionPolicialRepository;
+import com.example.central_policia.Repository.iMunicipioRepository;
 import com.example.central_policia.Repository.iPoliceRepository;
 import com.example.central_policia.Service.iPoliceService;
 import lombok.RequiredArgsConstructor;
@@ -16,24 +18,32 @@ import org.springframework.stereotype.Service;
 public class PoliceServiceImpl implements iPoliceService {
 
     private final iPoliceRepository policeRep;
-    private final iPersonRepository personRep;
+    private final iEstacionPolicialRepository estacionRep;
+    private final iDepartmentRepository depRep;
+    private final iMunicipioRepository munRep;
 
     @Override
-    public PoliceDTO registerPolice(PersonDTO personDTO, PoliceDTO policeDTO) {
+    public PoliceDTO registerPolice(RegisterPoliceRequestDTO request) {
 
-        Person personExist = personRep.findPersonByDUI(Integer.valueOf(personDTO.getDUI()));
+        PoliceDTO policeDTO = request.getPolicia();
 
         Police policeExist = policeRep.findPoliceByPlaca(policeDTO.getPlacaOficial());
+        if (policeExist != null) throw new FindPerson("Oficial ya registrado!");
 
-        if (policeExist != null) throw new FindPerson("Oficial Ya registrado!");
+        EstacionPolicial estacion = estacionRep.findById(policeDTO.getPoliceStationID()).orElse(null);
 
         Police policeToDatabase = Police.builder()
+                .DUI(request.getPersona().getDUI())
+                .name(request.getPersona().getName())
+                .tel(request.getPersona().getTel())
+                .dep(depRep.findDPById(request.getPersona().getDepID()))
+                .mun(munRep.findMunById(request.getPersona().getMunID()))
+                .numeroIdentificacion(policeDTO.getNumeroIdentificacion())
                 .placaOficial(policeDTO.getPlacaOficial())
-                .person(personExist)
+                .estacion(estacion)
                 .build();
 
         policeRep.save(policeToDatabase);
-
         return policeDTO;
     }
 }

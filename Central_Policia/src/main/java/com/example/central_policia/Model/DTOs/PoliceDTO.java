@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class PoliceDTO {
 
+    private String numeroIdentificacion;
+
     private String placaOficial;
 
-    private Long idPerson;
-
-    //private Long policeStationID;
+    private Long policeStationID;
 }
