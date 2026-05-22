@@ -7,17 +7,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "person_data")
-@SuperBuilder
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Inheritance(strategy = InheritanceType.JOINED)
 
 public class Person {
     @Id

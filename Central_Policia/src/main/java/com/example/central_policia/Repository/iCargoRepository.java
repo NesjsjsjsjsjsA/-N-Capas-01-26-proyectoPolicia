@@ -11,9 +11,16 @@ import java.util.UUID;
 
 public interface iCargoRepository extends JpaRepository<Cargo, UUID> {
 
+    /**
+     * Retorna todas las personas distintas que tienen al menos un cargo.
+     */
     @Query("SELECT DISTINCT c.acusado FROM Cargo c")
     List<Person> findAllPersonsWithCargos();
 
+    /**
+     * Retorna las personas más acusadas ordenadas de mayor a menor cantidad de cargos.
+     * Se usa Pageable para limitar a los 3 primeros.
+     */
     @Query("SELECT c.acusado FROM Cargo c GROUP BY c.acusado ORDER BY COUNT(c) DESC")
     List<Person> findTopMostWanted(Pageable pageable);
 }

@@ -25,20 +25,21 @@ public class Cargo {
     private LocalDate fecha;
 
     @ManyToOne
-    @JoinColumn(name = "acusador_id")
+    @JoinColumn(name = "acusador_id", nullable = false)
     private Person acusador;
 
     @ManyToOne
-    @JoinColumn(name = "acusado_id")
+    @JoinColumn(name = "acusado_id", nullable = false)
     private Person acusado;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoCargo tipo;
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "policia_id")
-    private Police policia;
+    @JoinColumn(name = "policia_id", nullable = false)
+    private Policia policia;
 }
