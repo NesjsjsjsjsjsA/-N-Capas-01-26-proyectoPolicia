@@ -2,10 +2,12 @@ package com.example.central_policia.Model.DTOs;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
-public class RegisterPoliceRequestDTO {
+public class RegisterCargoRequestDTO {
 
     private PersonDTO persona;
 
-    private PoliciaDTO policia;
+    private List<CargoItemDTO> cargos;
 }

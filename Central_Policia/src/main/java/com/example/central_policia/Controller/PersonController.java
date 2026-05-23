@@ -1,8 +1,8 @@
 package com.example.central_policia.Controller;
 
 import com.example.central_policia.Model.DTOs.GenericResponse;
-import com.example.central_policia.Model.DTOs.RegisterPoliceRequestDTO;
-import com.example.central_policia.Service.iPoliceService;
+import com.example.central_policia.Model.DTOs.PersonDTO;
+import com.example.central_policia.Service.iPersonService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/police")
+@RequestMapping("/api/persons")
 @RequiredArgsConstructor
-public class PoliceController {
+public class PersonController {
 
-    private final iPoliceService policeService;
+    private final iPersonService personService;
 
     @PostMapping("/register")
-    ResponseEntity<GenericResponse> registerPolice(@RequestBody @Valid RegisterPoliceRequestDTO request) {
+    ResponseEntity<GenericResponse> registerPerson(@RequestBody @Valid PersonDTO personDTO){
+
         return GenericResponse.builder()
-                .message("Policia creada con éxito")
-                .data(policeService.registerPolicia(request))
+                .message("Persona creada con éxito")
+                .data(personService.registerPerson(personDTO))
                 .status(HttpStatus.OK)
                 .build().buildResponse();
     }

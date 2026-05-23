@@ -1,7 +1,7 @@
 package com.example.central_policia.Repository;
 
-import com.example.central_policia.Model.Cargo;
-import com.example.central_policia.Model.Person;
+import com.example.central_policia.Model.Entity.Cargo;
+import com.example.central_policia.Model.Entity.Person;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,16 +11,9 @@ import java.util.UUID;
 
 public interface iCargoRepository extends JpaRepository<Cargo, UUID> {
 
-    /**
-     * Retorna todas las personas distintas que tienen al menos un cargo.
-     */
     @Query("SELECT DISTINCT c.acusado FROM Cargo c")
     List<Person> findAllPersonsWithCargos();
 
-    /**
-     * Retorna las personas más acusadas ordenadas de mayor a menor cantidad de cargos.
-     * Se usa Pageable para limitar a los 3 primeros.
-     */
     @Query("SELECT c.acusado FROM Cargo c GROUP BY c.acusado ORDER BY COUNT(c) DESC")
     List<Person> findTopMostWanted(Pageable pageable);
 }

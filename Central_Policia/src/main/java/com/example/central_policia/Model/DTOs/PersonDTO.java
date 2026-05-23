@@ -10,12 +10,9 @@ public class PersonDTO {
     private String name;
 
     @Pattern(regexp = "^[0-9]{8}-[0-9]$", message = "El DUI debe tener el formato 00000000-0")
-    private String DUI;
+    private String dui;
 
-    private Long depID;
-
-    // Nota: Lombok genera getMunID() para este campo
-    private Long MunID;
+    private DireccionDTO direccionDTO;
 
     @Pattern(regexp = "^[0-9]{4}-[0-9]{4}$", message = "El teléfono debe tener el formato 0000-0000")
     private String tel;

@@ -1,6 +1,6 @@
 package com.example.central_policia.Model.DTOs;
 
-import com.example.central_policia.Model.Enums.TipoCargo;
+import com.example.central_policia.Model.Entity.TipoCargo;
 import lombok.Data;
 
 @Data
