@@ -4,25 +4,23 @@ import com.example.central_policia.Model.Direcciones.Departamento;
 import com.example.central_policia.Model.Direcciones.Municipio;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "person_data")
-@Builder
+@Inheritance(strategy = InheritanceType.JOINED)
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    //Datos generales de una persona
 
     private String DUI;
 
@@ -36,7 +34,8 @@ public class Person {
     @JoinColumn(name = "municipio_id")
     private Municipio mun;
 
-
     private String tel;
+
+    private String calle;
 
 }
