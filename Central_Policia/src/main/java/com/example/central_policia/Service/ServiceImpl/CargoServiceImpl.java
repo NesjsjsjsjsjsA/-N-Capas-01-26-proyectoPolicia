@@ -11,7 +11,6 @@ import com.example.central_policia.Repository.iCargoRepository;
 import com.example.central_policia.Repository.iDepartmentRepository;
 import com.example.central_policia.Repository.iMunicipioRepository;
 import com.example.central_policia.Repository.iPersonRepository;
-import com.example.central_policia.Repository.iPoliciaRepository;
 import com.example.central_policia.Service.iCargoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

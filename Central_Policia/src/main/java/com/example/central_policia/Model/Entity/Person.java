@@ -25,8 +25,10 @@ public class Person {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "dir_id")
+    private String tel;
+
+    @OneToOne(cascade = CascadeType.ALL) //Guardado automático en la BDD antes de guardarla en la tabla Persona
+    @JoinColumn(name = "dir_id", referencedColumnName = "id" ,nullable = false)
     private Direccion dir;
 
 }

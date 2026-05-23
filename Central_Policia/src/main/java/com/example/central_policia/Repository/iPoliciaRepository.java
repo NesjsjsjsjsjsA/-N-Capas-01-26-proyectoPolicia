@@ -5,13 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
+import java.util.UUID;
 
-public interface iPoliciaRepository extends JpaRepository<Policia, Long> {
+public interface iPoliciaRepository extends JpaRepository<Policia, UUID> {
 
-    /**
-     * Busca un policía por su número de identificación (código).
-     * Si no existe, el servicio lanzará PoliciaNotFoundException.
-     */
-    @Query("SELECT p FROM Policia p WHERE p.numeroIdentificacion = :codigo")
-    Optional<Policia> findByCodigo(String codigo);
+    @Query("SELECT u FROM Policia u WHERE u.placa = :placaOficial")
+    Policia findCopByPlaca(String placa);
+
+    @Query("SELECT u FROM Policia u WHERE u.numeroIdentificacion = :codigo")
+    Optional<Policia> findCopByCodigo(String codigo);
 }

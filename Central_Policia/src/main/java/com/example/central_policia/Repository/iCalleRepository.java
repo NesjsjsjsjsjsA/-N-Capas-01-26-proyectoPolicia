@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface iCalleRepository extends JpaRepository<Calle,Long> {
-    @Query("select u from Calle u where u.calle_id = :id")
+    @Query("select u from Calle u where u.id = :id")
     Calle findCalleById(Long id);
 
 

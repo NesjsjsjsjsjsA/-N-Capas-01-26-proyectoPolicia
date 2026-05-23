@@ -1,31 +1,28 @@
 package com.example.central_policia.Model.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "policia_data")
-@Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Policia {
+@Data
+public class Policia extends Person{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
 
-    // Código único del oficial — se usa para buscar al policía al registrar un cargo
     @Column(name = "numero_identificacion", unique = true, nullable = false)
     private String numeroIdentificacion;
 
     @Column(name = "placa", unique = true, nullable = false)
     private String placa;
 
-    // Policia ES una persona
     @ManyToOne
     @JoinColumn(name = "persona_id", nullable = false)
     private Person persona;

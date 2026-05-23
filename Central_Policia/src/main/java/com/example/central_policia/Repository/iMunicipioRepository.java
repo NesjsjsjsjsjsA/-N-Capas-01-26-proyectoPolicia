@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface iMunicipioRepository extends JpaRepository <Municipio,Long> {
-    @Query("select u from Municipio u where u.municipio_id = :id")
+    @Query("select u from Municipio u where u.id = :id")
     Municipio findMunById(Long id);
 }

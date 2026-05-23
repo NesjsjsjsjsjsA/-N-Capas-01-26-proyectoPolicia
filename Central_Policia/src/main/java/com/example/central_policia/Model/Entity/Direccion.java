@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "dir_data")
 @Builder
@@ -16,11 +18,15 @@ import lombok.NoArgsConstructor;
 public class Direccion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    private String cadena;
+    private String calle;
 
-    private String Dep;
+    private String colonia;
+
+    @ManyToOne
+    @JoinColumn(name = "municipio_id")
+    private Municipio municipio;
 
 }

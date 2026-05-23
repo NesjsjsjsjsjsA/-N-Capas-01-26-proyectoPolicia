@@ -7,5 +7,5 @@ public class RegisterPoliceRequestDTO {
 
     private PersonDTO persona;
 
-    private PoliceDTO policia;
+    private PoliciaDTO policia;
 }

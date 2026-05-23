@@ -22,7 +22,7 @@ public class PoliceController {
     ResponseEntity<GenericResponse> registerPolice(@RequestBody RegisterPoliceRequestDTO request) {
         return GenericResponse.builder()
                 .message("Policia creada con éxito")
-                .data(policeService.registerPolice(request))
+                .data(policeService.registerPolicia(request))
                 .status(HttpStatus.OK)
                 .build().buildResponse();
     }
