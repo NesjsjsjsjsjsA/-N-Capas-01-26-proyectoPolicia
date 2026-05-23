@@ -1,5 +1,4 @@
-package com.example.central_policia.Model.Direcciones;
-
+package com.example.central_policia.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,19 +7,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "mun_data")
+@Table(name = "dir_data")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Municipio {
+
+public class Direccion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long municipio_id;
+    private Long id;
 
-    private String name;
+    private String cadena;
 
+    private String Dep;
 
 }
-

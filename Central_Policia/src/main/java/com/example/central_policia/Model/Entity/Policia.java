@@ -1,4 +1,4 @@
-package com.example.central_policia.Model;
+package com.example.central_policia.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

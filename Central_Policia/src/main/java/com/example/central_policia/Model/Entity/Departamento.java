@@ -1,4 +1,4 @@
-package com.example.central_policia.Model.Direcciones;
+package com.example.central_policia.Model.Entity;
 
 
 import jakarta.persistence.*;
@@ -18,8 +18,12 @@ public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private Long departamento_id;
+    private String name;
 
-    private String nombre;
+    @ManyToOne
+    @JoinColumn(name = "mun_id", nullable = false)
+    private Municipio mun;
+
 }

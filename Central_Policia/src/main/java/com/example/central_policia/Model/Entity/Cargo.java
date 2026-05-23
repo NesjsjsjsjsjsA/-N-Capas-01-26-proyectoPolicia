@@ -1,6 +1,5 @@
-package com.example.central_policia.Model;
+package com.example.central_policia.Model.Entity;
 
-import com.example.central_policia.Model.Enums.TipoCargo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

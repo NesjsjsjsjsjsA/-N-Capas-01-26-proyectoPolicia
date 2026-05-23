@@ -17,6 +17,8 @@ public class PersonDTO {
     // Nota: Lombok genera getMunID() para este campo
     private Long MunID;
 
+    private Long calleID;
+
     @Pattern(regexp = "^[0-9]{4}-[0-9]{4}$", message = "El teléfono debe tener el formato 0000-0000")
     private String tel;
 }

@@ -1,13 +1,12 @@
 package com.example.central_policia.Service.ServiceImpl;
 
-import com.example.central_policia.ExceptionHandler.PersonNotFoundException;
 import com.example.central_policia.ExceptionHandler.PoliciaNotFoundException;
-import com.example.central_policia.Model.Cargo;
+import com.example.central_policia.Model.Entity.Cargo;
 import com.example.central_policia.Model.DTOs.AcusadorDTO;
 import com.example.central_policia.Model.DTOs.CargoItemDTO;
 import com.example.central_policia.Model.DTOs.RegisterCargoRequestDTO;
-import com.example.central_policia.Model.Person;
-import com.example.central_policia.Model.Policia;
+import com.example.central_policia.Model.Entity.Person;
+import com.example.central_policia.Model.Entity.Policia;
 import com.example.central_policia.Repository.iCargoRepository;
 import com.example.central_policia.Repository.iDepartmentRepository;
 import com.example.central_policia.Repository.iMunicipioRepository;

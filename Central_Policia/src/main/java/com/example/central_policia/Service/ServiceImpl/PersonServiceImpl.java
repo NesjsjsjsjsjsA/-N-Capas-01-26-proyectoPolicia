@@ -2,9 +2,11 @@ package com.example.central_policia.Service.ServiceImpl;
 
 import com.example.central_policia.ExceptionHandler.FindPerson;
 import com.example.central_policia.Model.DTOs.PersonDTO;
-import com.example.central_policia.Model.Direcciones.Departamento;
-import com.example.central_policia.Model.Direcciones.Municipio;
-import com.example.central_policia.Model.Person;
+import com.example.central_policia.Model.Entity.Calle;
+import com.example.central_policia.Model.Entity.Departamento;
+import com.example.central_policia.Model.Entity.Municipio;
+import com.example.central_policia.Model.Entity.Person;
+import com.example.central_policia.Repository.iCalleRepository;
 import com.example.central_policia.Repository.iDepartmentRepository;
 import com.example.central_policia.Repository.iMunicipioRepository;
 import com.example.central_policia.Repository.iPersonRepository;
@@ -18,6 +20,7 @@ public class PersonServiceImpl implements iPersonService {
     private final iPersonRepository personRepository;
     private final iDepartmentRepository departamentoRepository;
     private final iMunicipioRepository municipioRepository;
+    private final iCalleRepository calleRepository;
 
     @Override
     public PersonDTO registerPerson(PersonDTO personDTO) {
@@ -27,6 +30,7 @@ public class PersonServiceImpl implements iPersonService {
 
         Departamento findDepartamento = departamentoRepository.findDPById(personDTO.getDepID());
         Municipio findMun = municipioRepository.findMunById(personDTO.getMunID());
+        Calle findCalle = calleRepository.findCalleById(personDTO.getCalleID());
 
 
         Person personToDatabase = Person.builder()
@@ -35,6 +39,7 @@ public class PersonServiceImpl implements iPersonService {
                 .tel(personDTO.getTel())
                 .dep(findDepartamento)
                 .mun(findMun)
+                .calle(findCalle)
                 .build();
 
         personRepository.save(personToDatabase);

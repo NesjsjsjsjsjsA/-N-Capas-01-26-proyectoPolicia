@@ -1,7 +1,5 @@
-package com.example.central_policia.Model;
+package com.example.central_policia.Model.Entity;
 
-import com.example.central_policia.Model.Direcciones.Departamento;
-import com.example.central_policia.Model.Direcciones.Municipio;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,20 +20,24 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String DUI;
+    @Column(unique = true)
+    private String dui;
 
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "departamento_id")
-    private Departamento dep;
-
-    @ManyToOne
-    @JoinColumn(name = "municipio_id")
-    private Municipio mun;
-
-    private String tel;
-
-    private String calle;
+    @JoinColumn(name = "dir_id")
+    private Direccion dir;
 
 }
+
+
+
+/*
+Direccion
+    Complemento - Cadena
+    Municipio
+        Nombre municipio - Cadena
+        Departamento
+            Nombre departamento - Cadena
+ */

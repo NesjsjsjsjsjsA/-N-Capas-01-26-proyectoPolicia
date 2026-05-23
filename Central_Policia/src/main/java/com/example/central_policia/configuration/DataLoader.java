@@ -1,15 +1,15 @@
 package com.example.central_policia.configuration;
 
-import com.example.central_policia.Model.*;
-import com.example.central_policia.Model.Direcciones.Departamento;
-import com.example.central_policia.Model.Direcciones.Municipio;
+import com.example.central_policia.Model.Entity.*;
 import com.example.central_policia.Repository.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+@Slf4j
 @Configuration
 public class DataLoader {
 
@@ -19,6 +19,7 @@ public class DataLoader {
     @Bean
     CommandLineRunner iniciarDepartamentos(iDepartmentRepository depRepository) {
         return args -> {
+            //log.info("esto es un ejemplo");
             if (depRepository.count() == 0) {
                 System.out.println(">>> Cargando departamentos...");
                 depRepository.saveAll(List.of(
@@ -79,26 +80,69 @@ public class DataLoader {
         };
     }
 
+    @Bean
+    CommandLineRunner iniciarCalle(iCalleRepository calleRepository){
+        return args -> {
+            if (calleRepository.count()==0){
+                System.out.println("Cargando datos!!!!");
+                calleRepository.saveAll(List.of(
+                        Calle.builder().name("Call las santas comalindas").build(),
+                        Calle.builder().name("Call las busquedas del oro").build(),
+                        Calle.builder().name("Call lomas lindas").build(),
+                        Calle.builder().name("Call perpetuo dolor").build(),
+                        Calle.builder().name("Call dionorio deofradio").build(),
+                        Calle.builder().name("Call Samsung pox").build(),
+                        Calle.builder().name("Call central CDD").build(),
+                        Calle.builder().name("Call Baptiste central city").build(),
+                        Calle.builder().name("Call Appian way").build(),
+                        Calle.builder().name("Call mis condolencias").build()
+                ));
+                System.out.println("Calles cargadas con éxito");
+            } else {
+                System.out.println("Calles ya existentes");
+            }
+        };
+    }
+
+
     // ─────────────────────────────────────────────
     // 3. Estaciones Policiales (mínimo 2)
     // ─────────────────────────────────────────────
     @Bean
-    CommandLineRunner iniciarEstaciones(iEstacionPolicialRepository estacionRepository) {
+    CommandLineRunner iniciarEstaciones(iEstacionPolicialRepository estacionRepository,
+                                        iDepartmentRepository departmentRepository,
+                                        iMunicipioRepository municipioRepository,
+                                        iCalleRepository calleRepository
+                                        ) {
         return args -> {
             if (estacionRepository.count() == 0) {
                 System.out.println(">>> Cargando estaciones policiales...");
+
+                Departamento ss = departmentRepository.findDPById(10L);
+                Departamento santaAna = departmentRepository.findDPById(12L);
+                Departamento sanVicente = departmentRepository.findDPById(8L);
+
+                Municipio mun1 = municipioRepository.findMunById(2L);
+                Municipio mun2 = municipioRepository.findMunById(1L);
+                Municipio mun3 = municipioRepository.findMunById(3L);
+
+                Calle call1 = calleRepository.findCalleById(1L);
+                Calle call2 = calleRepository.findCalleById(2L);
+                Calle call3 = calleRepository.findCalleById(4L);
+
+
                 estacionRepository.saveAll(List.of(
                         EstacionPolicial.builder()
                                 .nombre("Delegación Central PNC")
-                                .direccion("6a Calle Poniente, San Salvador")
+                                .direccion(call1.getName()+" , "+mun1.getName()+" , "+ss.getNombre())
                                 .build(),
                         EstacionPolicial.builder()
                                 .nombre("Subdelegación Santa Ana")
-                                .direccion("2a Avenida Sur, Santa Ana")
+                                .direccion(call2.getName()+" , "+mun2.getName()+" , "+santaAna.getNombre())
                                 .build(),
                         EstacionPolicial.builder()
                                 .nombre("Subdelegación San Miguel")
-                                .direccion("Blvd. Tutunichapa, San Miguel")
+                                .direccion(call3.getName()+" , "+mun3.getName()+" , "+sanVicente.getNombre())
                                 .build()
                 ));
                 System.out.println(">>> Estaciones policiales cargadas exitosamente.");
@@ -115,16 +159,23 @@ public class DataLoader {
     CommandLineRunner iniciarPersonas(
             iPersonRepository personRepository,
             iDepartmentRepository depRepository,
-            iMunicipioRepository munRepository) {
+            iMunicipioRepository munRepository,
+            iCalleRepository calleRepository
+            ) {
+
         return args -> {
             if (personRepository.count() == 0) {
                 System.out.println(">>> Cargando personas de catálogo...");
 
-                // IDs según el orden de inserción de departamentos (IDENTITY)
-                Departamento sansalvador = depRepository.findDPById(10L); // San Salvador
-                Departamento santaana    = depRepository.findDPById(12L); // Santa Ana
-                Municipio munSS          = munRepository.findMunById(1L);  // San Salvador
-                Municipio munSA          = munRepository.findMunById(4L);  // Santa Ana
+                Departamento sansalvador = depRepository.findDPById(10L);
+                Departamento santaana    = depRepository.findDPById(12L);
+                Municipio munSS          = munRepository.findMunById(1L);
+                Municipio munSA          = munRepository.findMunById(4L);
+                Calle calle1 = calleRepository.findCalleById(1L);
+                Calle calle2 = calleRepository.findCalleById(2L);
+                Calle calle3 = calleRepository.findCalleById(3L);
+
+
 
                 personRepository.saveAll(List.of(
                         Person.builder().name("Carlos Martínez").DUI("01234567-8").tel("7111-1001").dep(sansalvador).mun(munSS).build(),

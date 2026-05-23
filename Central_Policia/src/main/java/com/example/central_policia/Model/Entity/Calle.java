@@ -1,4 +1,4 @@
-package com.example.central_policia.Model;
+package com.example.central_policia.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,18 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "estacion_policial")
-@Data
+@Table(name = "calle_data")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EstacionPolicial {
+@Data
 
+public class Calle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre;
+    private String name;
 
-    private String direccion;
+    @ManyToOne
+    @JoinColumn(name = "mun_id")
+    private Municipio mun;
+
 }

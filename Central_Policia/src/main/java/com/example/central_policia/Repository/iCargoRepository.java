@@ -1,7 +1,7 @@
 package com.example.central_policia.Repository;
 
-import com.example.central_policia.Model.Cargo;
-import com.example.central_policia.Model.Person;
+import com.example.central_policia.Model.Entity.Cargo;
+import com.example.central_policia.Model.Entity.Person;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

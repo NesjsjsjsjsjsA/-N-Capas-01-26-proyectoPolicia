@@ -1,7 +1,7 @@
 package com.example.central_policia.Service;
 
 import com.example.central_policia.Model.DTOs.RegisterCargoRequestDTO;
-import com.example.central_policia.Model.Person;
+import com.example.central_policia.Model.Entity.Person;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.central_policia.Repository;
 
-import com.example.central_policia.Model.Police;
+import com.example.central_policia.Model.Entity.Police;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
