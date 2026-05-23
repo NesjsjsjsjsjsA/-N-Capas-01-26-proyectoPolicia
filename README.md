@@ -3,6 +3,21 @@ Creado para el laboratorio de N-capas
 
 Proyecto: BDD de una central de policia
 
+
+Correcciones:
+  - El formato actual de cargos no es el adecuado
+  - Correción a las direcciones (en todas las entidades)
+  - Eliminar la clonación de la entidad Policia
+  - Estación necesia el director de estación
+  - Algunos atributos no esta correctamente escritos
+  - Falta atributos claves en los Joins
+  - Buscar otra forma de cargar datos (como referencia _catálogo_)
+
+Las entidades que cada uno tiene que trabajar son las siguientes:
+  - Néstor (Persona, Policia y estación)
+  
+  - Samuel (Cargo)
+
 *Entidades claves*:
   - Persona
   {
