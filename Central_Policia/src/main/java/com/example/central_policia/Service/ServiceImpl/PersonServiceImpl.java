@@ -22,7 +22,7 @@ public class PersonServiceImpl implements iPersonService {
     @Override
     public PersonDTO registerPerson(PersonDTO personDTO) {
 
-        Person personExist = personRepository.findPersonByDUI(personDTO.getDui(), personDTO.getName());
+        Person personExist = personRepository.findPersonByDUI(personDTO.getDui());
         if (personExist != null) throw new FindPerson("Esta persona ya existe!");
 
         Municipio munExist = municipioRepository.findMunById(personDTO.getDireccionDTO().getMunicipioId());

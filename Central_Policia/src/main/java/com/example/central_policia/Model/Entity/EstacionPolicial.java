@@ -21,4 +21,8 @@ public class EstacionPolicial {
     private String nombre;
 
     private String direccion;
+
+    @OneToOne
+    @JoinColumn(name = "director_id")
+    private Policia director;
 }
