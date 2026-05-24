@@ -3,14 +3,19 @@ server:
 spring:
   application:
     name: Central_Policia
+  sql:
+    init:
+      mode: always
   jpa:
     database: postgresql
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5434/DB_Police
     username: postgres
     password: 123456
+

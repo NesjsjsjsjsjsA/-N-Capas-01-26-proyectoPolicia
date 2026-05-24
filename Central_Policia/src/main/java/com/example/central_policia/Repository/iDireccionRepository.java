@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.UUID;
 
-public interface iDireccionRepository extends JpaRepository<Direccion, UUID> {
+public interface iDireccionRepository extends JpaRepository<Direccion, Long> {
 
-    @Query("select u from Direccion u where u.municipio =: municipio")
-    Direccion findDireccionByMun(Municipio municipio);
+    @Query("select u from Direccion u where u.municipio.id =: id AND u.calle =: calle")
+    Direccion findDireccionByMunAndCalle(Long id, String calle);
 }

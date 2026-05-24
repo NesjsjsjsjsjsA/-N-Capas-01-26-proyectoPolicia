@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface iPersonRepository extends JpaRepository<Person, UUID> {
 
-    @Query("SELECT u FROM Person u WHERE u.name = :name OR u.dui = :dui")
+    @Query("SELECT u FROM Person u WHERE u.dui = :dui")
     Person findPersonByDUI(String dui);
 }

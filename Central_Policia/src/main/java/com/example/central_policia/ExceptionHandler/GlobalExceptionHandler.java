@@ -75,7 +75,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<GenericResponse> handleGenericException(Exception ex) {
         CustomErrorResponse errorResponse = new CustomErrorResponse(
                 LocalDateTime.now(),
-                "Error interno del servidor: " + ex.getMessage()
+                "Error interno del servidor: :( " + ex.getMessage()
         );
         return GenericResponse.builder()
                 .data(errorResponse)

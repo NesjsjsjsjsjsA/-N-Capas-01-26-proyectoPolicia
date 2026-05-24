@@ -18,15 +18,15 @@ import java.util.UUID;
 public class Direccion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String calle;
 
     private String colonia;
 
     @ManyToOne
-    @JoinColumn(name = "municipio_id")
+    @JoinColumn(name = "municipio_id",foreignKey = @ForeignKey(name = "fk_mun_id"))
     private Municipio municipio;
 
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Table(name = "dep_data")
@@ -20,10 +21,7 @@ public class Departamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "mun_id", nullable = false)
-    private Municipio mun;
 
 }

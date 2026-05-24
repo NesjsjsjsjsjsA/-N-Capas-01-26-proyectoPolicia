@@ -1,8 +1,8 @@
 package com.example.central_policia.Service.ServiceImpl;
 
 import com.example.central_policia.ExceptionHandler.FindPerson;
+import com.example.central_policia.Model.DTOs.PersonDTO;
 import com.example.central_policia.Model.DTOs.PoliciaDTO;
-import com.example.central_policia.Model.DTOs.RegisterPoliceRequestDTO;
 import com.example.central_policia.Model.Entity.EstacionPolicial;
 import com.example.central_policia.Model.Entity.Person;
 import com.example.central_policia.Model.Entity.Policia;
@@ -19,27 +19,33 @@ public class PoliciaServiceImpl implements iPoliceService {
     private final iEstacionPolicialRepository estacionRep;
     private final iPersonRepository personRep;
 
-
     @Override
-    public PoliciaDTO registerPolicia(RegisterPoliceRequestDTO request) {
+    public PoliciaDTO registerPolicia(PoliciaDTO policiaDTO, String dui) {
 
-        PoliciaDTO policeDTO = request.getPolicia();
-
-        Policia policeExist = policeRep.findCopByPlaca(policeDTO.getPlacaOficial());
+        Policia policeExist = policeRep.findCopByPlaca(policiaDTO.getPlacaOficial());
         if (policeExist != null) throw new FindPerson("Oficial ya registrado!");
 
-        Person personExist = personRep.findPersonByDUI(request.getPersona().getDui());
+        Person personExist = personRep.findPersonByDUI(dui);
+        if (personExist == null) {
 
-        EstacionPolicial estacion = estacionRep.findById(policeDTO.getPoliceStationID()).orElse(null);
+            throw new RuntimeException("La persona con el DUI " + dui + " no existe. Debe registrarse primero.");
+        }
+
+        EstacionPolicial estacionPolicial = estacionRep.findEstId(policiaDTO.getPoliceStationID());
+        if (estacionPolicial == null) {
+            throw new RuntimeException("La estación policial con ID " + policiaDTO.getPoliceStationID() + " no existe.");
+        }
 
         Policia policeToDatabase = Policia.builder()
+                .numeroIdentificacion(policiaDTO.getNumeroIdentificacion())
+                .placa(policiaDTO.getPlacaOficial())
                 .persona(personExist)
-                .numeroIdentificacion(policeDTO.getNumeroIdentificacion())
-                .placa(policeDTO.getPlacaOficial())
-                .estacion(estacion)
+                .estacion(estacionPolicial)
                 .build();
 
         policeRep.save(policeToDatabase);
-        return policeDTO;
+
+        return policiaDTO;
     }
+
 }

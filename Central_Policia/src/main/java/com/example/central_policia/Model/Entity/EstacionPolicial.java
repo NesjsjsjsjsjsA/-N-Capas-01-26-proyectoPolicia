@@ -20,9 +20,11 @@ public class EstacionPolicial {
 
     private String nombre;
 
-    private String direccion;
+    @OneToOne
+    @JoinColumn(name = "direccion_id", nullable = false, foreignKey = @ForeignKey(name = "fk_dir_id"))
+    private Direccion direccion;
 
     @OneToOne
-    @JoinColumn(name = "director_id")
+    @JoinColumn(name = "director_id", foreignKey = @ForeignKey(name = "fk_director_id"), nullable = false)
     private Policia director;
 }

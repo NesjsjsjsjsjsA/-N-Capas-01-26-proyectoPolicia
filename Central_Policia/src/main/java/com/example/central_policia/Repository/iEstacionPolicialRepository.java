@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface iEstacionPolicialRepository extends JpaRepository<EstacionPolicial, Long> {
-    @Query("select u from EstacionPolicial u where u.id = :id")
-    EstacionPolicial findDPById(Long id);
+    @Query("select u from EstacionPolicial u where u.id = :idEstacion")
+    EstacionPolicial findEstId(Long idEstacion);
 }

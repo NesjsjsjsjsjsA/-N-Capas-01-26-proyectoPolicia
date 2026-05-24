@@ -2,16 +2,15 @@ package com.example.central_policia.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "person_data")
-@Inheritance(strategy = InheritanceType.JOINED)
-@SuperBuilder
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -28,18 +27,7 @@ public class Person {
     private String tel;
 
     @OneToOne(cascade = CascadeType.ALL) //Guardado automático en la BDD antes de guardarla en la tabla Persona
-    @JoinColumn(name = "dir_id", referencedColumnName = "id" ,nullable = false)
+    @JoinColumn(name = "dir_id",nullable = false, foreignKey = @ForeignKey(name = "fk_person_dir"))
     private Direccion dir;
 
 }
-
-
-
-/*
-Direccion
-    Complemento - Cadena
-    Municipio
-        Nombre municipio - Cadena
-        Departamento
-            Nombre departamento - Cadena
- */

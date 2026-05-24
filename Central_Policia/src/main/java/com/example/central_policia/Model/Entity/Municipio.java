@@ -19,10 +19,11 @@ public class Municipio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "dep_id")
+    @JoinColumn(name = "dep_id", nullable = false, foreignKey = @ForeignKey(name = "fk_dep_id"))
     private Departamento dep;
 
 
