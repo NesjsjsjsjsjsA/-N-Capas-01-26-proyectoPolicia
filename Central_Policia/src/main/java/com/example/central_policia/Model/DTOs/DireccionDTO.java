@@ -7,10 +7,10 @@ import lombok.Data;
 public class DireccionDTO {
 
     @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")
-    private final String calleDTO;
+    private String calleDTO;
 
     @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")
-    private final String coloniaDTO;
+    private String coloniaDTO;
 
     private Long municipioId;
 

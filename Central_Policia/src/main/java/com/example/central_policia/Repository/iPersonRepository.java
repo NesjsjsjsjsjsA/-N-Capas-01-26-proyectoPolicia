@@ -11,4 +11,6 @@ public interface iPersonRepository extends JpaRepository<Person, UUID> {
 
     @Query("SELECT u FROM Person u WHERE u.dui = :dui")
     Person findPersonByDUI(String dui);
+
+    Optional<Person> findByDui(String dui);
 }

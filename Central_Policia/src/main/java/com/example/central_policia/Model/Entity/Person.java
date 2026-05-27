@@ -26,8 +26,8 @@ public class Person {
 
     private String tel;
 
-    @OneToOne(cascade = CascadeType.ALL) //Guardado automático en la BDD antes de guardarla en la tabla Persona
-    @JoinColumn(name = "dir_id",nullable = false, foreignKey = @ForeignKey(name = "fk_person_dir"))
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dir_id", nullable = true, foreignKey = @ForeignKey(name = "fk_person_dir"))
     private Direccion dir;
 
 }

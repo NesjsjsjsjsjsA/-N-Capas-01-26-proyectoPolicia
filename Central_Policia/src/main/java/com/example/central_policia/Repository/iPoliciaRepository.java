@@ -11,4 +11,7 @@ public interface iPoliciaRepository extends JpaRepository<Policia, UUID> {
 
     @Query("SELECT u FROM Policia u WHERE u.placa = :placaOficial")
     Policia findCopByPlaca(String placaOficial);
+
+    @Query("SELECT u FROM Policia u WHERE u.numeroIdentificacion = :codigo")
+    Optional<Policia> findCopByCodigo(String codigo);
 }
